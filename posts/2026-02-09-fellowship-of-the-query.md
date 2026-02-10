@@ -69,7 +69,7 @@ The query, fully parsed and embedded, reaches the **Mixture of Experts layer**. 
 
 The **router** (Elrond) evaluates the query and decides: this quest requires Experts 1, 2, 3, and 4. The other four stay seated, they're loaded in memory (they showed up to the Council) but they don't join this Fellowship. 
 
-> **Bonus:** The additional experts show up to the council, taking up precious VRAM with their mere existence. This is a potential drawback to using other model architectures such as Ensemble, but useful for extremely large and diverse datasets.
+> **Bonus:** The additional experts show up to the council, taking up precious VRAM with their mere existence. This is a potential drawback to using MoE as opposed to other model architectures such as Ensemble, but useful for extremely large and diverse datasets.
 
 **That's sparse activation.** The full model has the combined knowledge of all 8 experts, but this query only burns compute on 4. This is why MoE models are fast despite being enormous.
 
@@ -81,7 +81,7 @@ The activated experts fire simultaneously, each handling their specialty:
 
 **Legolas (Location Expert)** filters to Bree. Not just city name but ZIP codes, county records, address history. Someone who lived in Bree three years ago but moved? Legolas has the long-range vision to see that distinction.
 
-**Gimli (Occupation/License Expert)** hits the professional licensing databases. Wizard licenses are city-issued in Gondor (CSLB). Cross-references against 6,000 data sources. Gimli will find you.
+**Gimli (Occupation/License Expert)** hits the professional licensing databases. Wizard licenses are realm-issued in Gondor (think CSLB in California). Cross-references against 6,000 data sources. Gimli will find you.
 
 **Gandalf (Criminal Records Expert)** queries criminal records. "Illegal fireworks" seems simple, but expunged records? Pending cases? Misdemeanors vs felonies? Gandalf navigates the gray areas with wisdom, not brute force. (I realize in this example he is searching for his own crimes, just be cool man.)
 
