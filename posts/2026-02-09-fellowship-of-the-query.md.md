@@ -16,11 +16,11 @@ tags: [ai, moe, machine-learning, lotr, natural-language-search]
 
 ## The Story
 
-*I recently interviewed for a people-search platform. The interviewer asked me to explain MoE. While I was somewhat familiar with the term, I stumbled when trying to explain it. Here is my attempt to explain the lifecycle of a natural language query using MoE looks like for a people-search company with 870 million contact records across 330 million Americans, sourced from 6,000+ data sources. A user types: **"Find me all licensed plumbers named Rodriguez in Sacramento with no criminal record."** This is the journey of that query but make it Lord of the Rings.*
+*I recently interviewed for a people-search platform. The interviewer asked me to explain MoE. While I was somewhat familiar with the term, I stumbled when trying to explain it. Here is my attempt to explain what the lifecycle of a natural language query using MoE looks like for a people-search company with 870 million contact records across 330 million Americans, sourced from 6,000+ data sources. A user types: **"Find me all licensed wizards named Gandalf in Bree with maybe some illegal fireworks charges."** This is the journey of that query but make it Lord of the Rings.*
 
 ### The Shire: A User Types a Query
 
-A user sits at a search bar. They dont want to check boxes, or select from dropdowns.vThey don't speak SQL. They don't know the schema. They just type plain English, the way Frodo lived in the Shire knowing nothing of the wider world. The query is raw, unstructured and naive but it carries something powerful inside it. **Intent.** Like the Ring leaving the Shire, this string of text is about to pass through many hands, each one extracting meaning from it.
+A user sits at a search bar. They dont want to check boxes, or select from dropdowns. They don't speak SQL. They don't know the schema. They just type plain English, the way Frodo lived in the Shire knowing nothing of the wider world. The query is raw, unstructured and naive but it carries something powerful inside it. **Intent.** Like the Ring leaving the Shire, this string of text is about to pass through many hands, each one extracting meaning from it.
 
 ### The Old Forest & Tom Bombadil: Input Sanitization
 
