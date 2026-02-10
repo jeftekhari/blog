@@ -20,9 +20,9 @@ tags: [ai, moe, machine-learning, lotr, natural-language-search]
 
 ### The Shire: A User Types a Query
 
-A user sits at a search bar. They dont want to check boxes, or select from dropdowns. They don't speak SQL. They don't know the schema. They just type plain English, the way Frodo lived in the Shire knowing nothing of the wider world. The query is raw, unstructured and naive but it carries something powerful inside it. **Intent.** Like the Ring leaving the Shire, this string of text is about to pass through many hands, each one extracting meaning from it.
+A user sits at a search bar. They dont want to check boxes, or select from dropdowns. They don't speak SQL. They don't know the schema. They just type plain English, the way Frodo lived in the Shire knowing nothing of the wider world. The query is raw, unstructured and naive but it carries something powerful inside it. **Intent.** Like the One Ring leaving the Shire, this string of text is about to pass through many hands, each one extracting meaning from it.
 
-### The Old Forest & Tom Bombadil: Input Sanitization
+### The Old Forest & Tom Bombadil: Input Sanitization (if you watched the movies skip this)
 
 Before the query goes anywhere meaningful, it passes through the API gateway. Rate limiting, auth checks, input sanitization. Tom Bombadil is weird and nobody fully understands why he exists, but he catches problems early. SQL injection? Malformed Unicode? Bombadil handles it. The quest almost ended in the Barrow-downs, and your pipeline almost died to a [Bobby Tables](https://xkcd.com/327/) attack. Unglamorous but necessary.
 
@@ -95,7 +95,7 @@ It's vast, it's old, it's full of things that have been there for decades (30+ y
 
 ### Lothlórien: Results Aggregation & Reranking
 
-DISCLAIMER: This part of the analogy needs work and I don't fully understand the re-ranking layer.
+> _Disclaimer: This part of the analogy needs work and I don't fully understand the re-ranking layer._
 
 The Fellowship emerges from Moria and reaches Lothlórien. **Galadriel's Mirror is the reranking layer.** Each expert returned results and now they need to be merged, deduplicated, and ranked.
 
@@ -110,6 +110,8 @@ Galadriel shows Frodo possible futures; the reranker shows the system possible r
 Galadriel also gives **gifts** the results get enriched here. Contact info attached. Address verified. Last known activity date. Each result leaves Lothlórien more useful than when it arrived.
 
 ### Amon Hen: Response Formatting
+
+> _Disclaimer: and we're back to understanding things_
 
 The final overlook before delivery. The raw ranked results get formatted into what the user actually sees such as cards, summaries, confidence indicators. The query has been transformed from a naive English sentence into a structured, ranked, enriched response.
 
