@@ -2,7 +2,7 @@
 title: "The Fellowship of the Query: Understanding Mixture of Experts & Natural Language Search"
 date: 2026-02-09
 slug: fellowship-of-the-query
-description: "A technical deep-dive into MoE architecture and NL search over structured data told through the lens of Lord of the Rings."
+description: "A look into MoE architecture and NL search over structured data told through the lens of Lord of the Rings."
 tags: [ai, moe, machine-learning, lotr, natural-language-search]
 ---
 
@@ -14,16 +14,7 @@ tags: [ai, moe, machine-learning, lotr, natural-language-search]
 
 ---
 
-## Table of Contents
-
-- [Part I: The Story](#part-i-the-story)
-- [Part II: The Technical Breakdown](#part-ii-the-technical-breakdown)
-- [Part III: Study Resources](#part-iii-study-resources)
-- [Part IV: Stack Considerations](#part-iv-stack-considerations)
-
----
-
-## Part I: The Story
+## The Story
 
 *I recently interviewed for a people-search platform. The interviewer asked me to explain MoE. While I was somewhat familiar with the term, I stumbled when trying to explain it. Here is my attempt to explain the lifecycle of a natural language query using MoE looks like for a people-search company with 870 million contact records across 330 million Americans, sourced from 6,000+ data sources. A user types: **"Find me all licensed plumbers named Rodriguez in Sacramento with no criminal record."** This is the journey of that query but make it Lord of the Rings.*
 
