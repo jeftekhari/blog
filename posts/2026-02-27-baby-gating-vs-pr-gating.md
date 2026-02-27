@@ -51,4 +51,5 @@ They just dramatically lower the odds that your worst day starts with, “huh, t
 
 Anyway, I’m off to install more safety gear while a tiny human attempts to speedrun self-destruction.
 
-Remember, if you don’t gate PRs, you’re just raw-dogging `main` and hoping vibes are enough.
+
+*Remember, if you don’t gate PRs, you’re just raw-dogging `main` and hoping vibes are enough.*
