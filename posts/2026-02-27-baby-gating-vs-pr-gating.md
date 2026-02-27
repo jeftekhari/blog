@@ -1,3 +1,11 @@
+---
+title: "Baby Gating vs PR Gating"
+date: 2026-02-27
+slug: baby-gating-vs-pr-gating
+description: "Why installing baby gates taught me more about PR gating, required checks, and risk-based CI than any engineering handbook."
+tags: [engineering, devops, ci-cd, parenting, software-design, pr-gating]
+---
+
 # Baby Gating vs PR Gating
 
 It’s Pokémon Day’s 30th anniversary, and somehow Pikachu has outlived half the frameworks I’ve shipped to prod.
