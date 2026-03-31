@@ -1,39 +1,37 @@
 ---
-title: "Pretext Feels Like a Missing Layout Primitive"
+title: "Pretext Turns Paragraphs Into Data"
 date: 2026-03-30
 slug: pretext-is-a-layout-primitive
-description: "I wanted to see if I could keep writing blog posts in plain GitHub markdown while still dropping in a layout-aware demo. Pretext made that surprisingly straightforward."
+description: "I saw a few Pretext demos on X, installed it, and now this post has a weird little text playground in the middle of it."
 tags: [engineering, typography, ui, javascript, blogging, pretext]
 ---
 
-# Pretext Feels Like a Missing Layout Primitive
+# Pretext Turns Paragraphs Into Data
 
-Every once in a while a library shows up and makes a weird part of the platform feel embarrassingly underpowered.
+Every now and then a library shows up and immediately makes part of the web platform feel a little fake.
 
-That was my reaction to [Pretext](https://github.com/chenglou/pretext).
+That was Pretext for me.
 
-I kept seeing slick little demos and examples floating around from folks like Alyx, Vlad, Sirokos, and birdabo, and the thing that grabbed me was not just "wow, neat text rendering."
+I kept seeing demos from [Alyx](https://x.com/alyx_so/status/2038369797616885933), [Vlad](https://x.com/VladArtym/status/2038368243115610351), [Sirokos](https://x.com/Sirokos/status/2038441806422048867), and [birdabo](https://x.com/birdabo/status/2038219452337074677), and the thing that made me stop was not “cool text effect.”
 
-It was:
+It was: **oh, this gives you the paragraph layout as data.**
 
-**oh. this turns paragraph layout into data.**
+That’s the whole trick.
 
-That’s the part that feels important.
+Browsers are happy to render text.
+They get weirdly cagey the second you ask follow-up questions.
 
-The browser is great at painting text.
-It is much less great at letting you *work with* multiline layout as a first-class thing.
+How tall is this paragraph going to be?
+How many lines did it wrap into?
+What are the actual line breaks?
+Can I flow this around something without doing CSS yoga at 1am?
 
-Usually the moment you want to know:
-- how tall this paragraph will be
-- how many lines it will wrap into
-- what the actual line breaks are
-- what the narrowest "nice" width is for a message bubble or pullquote
+Normally that’s where you end up measuring DOM nodes, forcing layout, and doing the kind of work that makes frontend feel like a low-level haunting.
 
-...you end up poking the DOM, measuring boxes, forcing layout, or building some cursed little cache that you already know will betray you later.
+Pretext’s pitch is much better.
+You do a prep pass once, and then layout becomes something you can work with instead of something that only happened *to* you.
 
-Pretext takes a different angle.
-
-At the simple end, you can do this:
+At the simple end:
 
 ```ts
 import { prepare, layout } from '@chenglou/pretext'
@@ -42,116 +40,90 @@ const prepared = prepare(text, '16px Inter')
 const { height, lineCount } = layout(prepared, width, 24)
 ```
 
-That alone is already useful.
-You get paragraph height and line count without asking the DOM to reflow so you can inspect it after the fact.
+That already rules.
+No DOM poking. No “let me render this invisibly offscreen real quick.”
+Just an answer.
 
-But the part I really like is the next layer up:
+The more fun part is this:
 
 ```ts
-import { prepareWithSegments, layoutWithLines } from '@chenglou/pretext'
+import { prepareWithSegments, layoutNextLine } from '@chenglou/pretext'
 
 const prepared = prepareWithSegments(text, '600 18px Inter')
-const { lines } = layoutWithLines(prepared, width, 28)
 ```
 
-Now you do not just know the paragraph dimensions.
-You have the actual lines.
+Once you have that, you can lay text out a line at a time, with different widths as you go.
+That’s the part that made the whole thing click for me.
 
-That means you can paint them however you want:
-- DOM rows
-- SVG
-- canvas
-- WebGL
-- some weird editorial layout that would normally make CSS look at you like you asked it to solve taxes
+Because now you’re not just measuring text.
+You’re steering it.
 
-That’s what I wanted to try here.
+That’s why there’s a weird little demo in the middle of this post.
+Click the button and the words drop.
+Click it again and they snap back into place.
+Drag the portrait around and the paragraph re-forms around it.
 
-This blog still works the same way it did before:
-- the post source of truth is still plain markdown in my [`jeftekhari/blog`](https://github.com/jeftekhari/blog) repo
-- my site fetches that markdown remotely and renders it
-- this article adds one tiny embed marker that the site hydrates on the client
-
-So the post still lives in GitHub-flavored markdown.
-It just happens to contain a small interactive layout demo powered by Pretext.
+That’s not “look at this nice font treatment.”
+That’s layout becoming interactive.
 
 Here’s the demo:
 
 <div class="pretext-demo" data-pretext-demo="compare">
   <script type="application/json">
     {
-      "title": "Pretext in this actual blog post",
-      "note": "Drag the width slider. The left panel is regular paragraph flow. The right panel is the same text manually laid out line-by-line from Pretext output.",
-      "text": "Pretext turns paragraph layout into reusable data. That makes it great for message bubbles, pull quotes, weird editorial blocks, or any UI where you want the browser's line breaking behavior without asking the DOM to reflow on every pass. AGI 春天到了. بدأت الرحلة 🚀",
-      "font": "600 18px Inter",
-      "lineHeight": 28,
-      "minWidth": 220,
-      "maxWidth": 540,
-      "initialWidth": 360,
-      "step": 10
+      "text": "Pretext turns paragraph layout into reusable data. That makes it useful for message bubbles, draggable editorial layouts, and interfaces where text needs to react to things on the page instead of just sitting there.",
+      "imageUrl": "/assets/profilepicture.jpg",
+      "imageWidth": 172,
+      "imageHeight": 228,
+      "stageWidth": 680,
+      "stageMinHeight": 460
     }
   </script>
 </div>
 
-That little box is the whole trick.
+The part I like most is that I didn’t have to turn my blog into a science project to do this.
 
-The markdown file contains the content and the config.
-The site sees the `data-pretext-demo` marker, loads a tiny browser module, runs Pretext, and manually renders the right-hand version line by line.
+The post still lives in plain markdown in [`jeftekhari/blog`](https://github.com/jeftekhari/blog).
+My site still fetches that markdown remotely.
+This article just drops in one embed marker and lets the site hydrate it.
 
-I like this approach because it keeps the boundaries clean:
+That’s the exact amount of ceremony I wanted.
 
-- authoring stays in markdown
-- the blog repo stays the source of truth
-- Pretext only appears where I explicitly ask for it
-- I don’t need to rebuild the whole blog system around a new content format
+A lot of frontend tools are interesting right up until the moment they ask you to reorganize your whole app around them.
+Then suddenly you’re doing a “small experiment” that somehow requires three build steps, two wrappers, and a spiritual commitment.
 
-That feels like the right amount of ceremony for a personal site.
+This wasn’t that.
 
-## Why This Is More Interesting Than "Fancy Text"
+It was:
+- `npm install @chenglou/pretext`
+- add one little client-side hook
+- put one weird toy in one blog post
+- call it a day
 
-The flashy demos are fun, but I think the real value is boring, practical UI engineering:
+That’s my favorite kind of software.
+Small enough to ship.
+Useful enough to steal later.
+Weird enough that I’ll remember it.
 
-- virtualization without guessing paragraph heights
-- stable scroll anchoring when text arrives late
-- message bubbles that shrink-wrap to the widest wrapped line
-- editorial layouts where width changes from row to row
-- preflight checks that tell you a label is going to wrap before it ships
+Also, separate from the toy factor, I think the actually-practical use cases are pretty obvious:
+- shrink-wrapped message bubbles
+- virtualization without dumb paragraph-height guesses
+- scroll anchoring when text loads late
+- editorial layouts that need text to route around an object
+- catching overflow and wrapping problems before they hit prod
 
-Basically: anywhere text layout is part of your product logic instead of just a side effect of CSS.
+That’s where this stops being “cute text demo” and starts being real UI infrastructure.
 
-That’s the thing I keep coming back to.
-Pretext is not trying to replace the browser’s renderer.
-It is exposing just enough of paragraph layout to let you build better stuff around it.
+Anyway, I saw a few posts on X, installed the package, and now this post has gravity.
+That feels like a solid use of an afternoon.
 
-## The Version I Actually Wanted
-
-I did *not* want a giant CMS rewrite for this.
-
-I wanted:
-- one npm package
-- one small blog-side script
-- one markdown post in GitHub
-- one example that proves the idea is real
-
-That bar matters.
-
-A lot of otherwise-interesting frontend tools die the second they demand you reorganize your whole app around them.
-This one didn’t.
-
-I got to keep the existing flow and make one post a little more alive.
-
-That’s usually my favorite kind of experiment:
-
-small enough to ship,
-weird enough to be memorable,
-useful enough that I’ll probably steal the pattern again later.
-
-If you want to try it yourself, the starting point is dead simple:
+If you want to mess with it yourself:
 
 ```sh
 npm install @chenglou/pretext
 ```
 
-Then start with `prepare()` and `layout()` if you only need paragraph height.
-If you need the actual lines, jump straight to `prepareWithSegments()` and `layoutWithLines()`.
+Start with `prepare()` and `layout()` if you just want measurements.
+Jump to `prepareWithSegments()` and `layoutNextLine()` if you want to start doing the cursed/fun stuff.
 
-That second path is where the fun starts.
+That second path is where the good problems are.
