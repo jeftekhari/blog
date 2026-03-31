@@ -76,18 +76,19 @@ It just happens to contain a small interactive layout demo powered by Pretext.
 
 Here’s the demo:
 
-<div class="pretext-demo" data-pretext-demo="compare">
+<div class="pretext-demo" data-pretext-demo="shape-flow">
   <script type="application/json">
     {
-      "title": "Pretext in this actual blog post",
-      "note": "Drag the width slider. The left panel is regular paragraph flow. The right panel is the same text manually laid out line-by-line from Pretext output.",
-      "text": "Pretext turns paragraph layout into reusable data. That makes it great for message bubbles, pull quotes, weird editorial blocks, or any UI where you want the browser's line breaking behavior without asking the DOM to reflow on every pass. AGI 春天到了. بدأت الرحلة 🚀",
+      "title": "Text flowing around a gravity well",
+      "note": "Drag the orb size. Each row is laid out with a different available width using layoutNextLine(), so the paragraph bends around the shape instead of just wrapping in a plain rectangle.",
+      "text": "Pretext turns paragraph layout into reusable data. That makes it great for message bubbles, pull quotes, weird editorial blocks, and any UI where text layout is part of the product logic instead of an accidental side effect. AGI 春天到了. بدأت الرحلة 🚀",
       "font": "600 18px Inter",
-      "lineHeight": 28,
-      "minWidth": 220,
-      "maxWidth": 540,
-      "initialWidth": 360,
-      "step": 10
+      "lineHeight": 30,
+      "stageWidth": 620,
+      "minOrbRadius": 54,
+      "maxOrbRadius": 146,
+      "initialOrbRadius": 104,
+      "step": 2
     }
   </script>
 </div>
@@ -95,7 +96,14 @@ Here’s the demo:
 That little box is the whole trick.
 
 The markdown file contains the content and the config.
-The site sees the `data-pretext-demo` marker, loads a tiny browser module, runs Pretext, and manually renders the right-hand version line by line.
+The site sees the `data-pretext-demo` marker, loads a tiny browser module, and then uses `layoutNextLine()` in a loop so each row can get a slightly different width as it approaches the glowing orb.
+
+That is the part that feels genuinely fun to me.
+
+The boring version of this post would have been "look, I can measure paragraph height."
+Useful, yes. Not exactly fireworks.
+
+The better version is showing that once paragraph layout becomes data, you can do weird little editorial tricks on purpose instead of begging CSS to accidentally cooperate.
 
 I like this approach because it keeps the boundaries clean:
 
