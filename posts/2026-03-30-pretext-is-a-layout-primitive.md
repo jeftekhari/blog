@@ -12,8 +12,6 @@ Every now and then a library shows up and immediately makes makes you wonder why
 
 That was Pretext for me. At first I thought this was just another goofy frontend ui library, but then I realized **the paragraph is not text anymore, it's data.** 
 
-It was: **oh, this gives you the paragraph layout as data.**
-
 Browsers are happy to render text.
 They get weirdly cagey the second you ask follow-up questions.
 
