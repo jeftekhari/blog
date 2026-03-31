@@ -18,7 +18,7 @@ They get weirdly cagey the second you ask follow-up questions.
 How tall is this paragraph going to be?
 How many lines did it wrap into?
 What are the actual line breaks?
-Can I flow this around something without doing CSS yoga at 1am?
+Can I flow this around something without doing CSS? (I hate CSS)
 
 Normally that’s where you end up measuring DOM nodes, forcing layout, and doing the kind of work that makes frontend feel like a low-level haunting.
 
