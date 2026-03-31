@@ -53,7 +53,7 @@ Click the button and the words drop.
 Click it again and they snap back into place.
 Drag the portrait around and the paragraph re-forms around it.
 
-We tokenize each word into a <span> and suddenly words become interactive.
+We tokenize each word into a `<span>` and suddenly words become interactive.
 
 Here’s the demo:
 
