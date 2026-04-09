@@ -193,4 +193,4 @@ If you want to try it on your own repos, you will be able to shortly. There's so
 
 ---
 
-*Next up: writing an incident response plan for a one-person operation, and figuring out what "risk appetite" actually means when you're the only person on the team.*
+*Next up: dahsboard tweaks to open source, further securing of personal site, and in depth understanding of more compliance terminology!*
