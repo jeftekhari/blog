@@ -178,7 +178,7 @@ But underneath the aesthetic, it's showing real data: NIST CSF compliance per fu
 ## What I've learned so far
 
 <p align="center">
-  <img src="[https://media1.tenor.com/m/fsdb4oFRoIYAAAAd/verve-light-i-understand-nothing.gif](https://tenor.com/bEhd4.gif)"/>
+  <img src="https://media1.tenor.com/m/fsdb4oFRoIYAAAAd/verve-light-i-understand-nothing.gif"/>
 </p>
 
 I went into this knowing basically nothing about GRC. I'd heard of NIST CSF and SOC 2 but couldn't have told you what a "control" was or why anyone would need a "risk register."
