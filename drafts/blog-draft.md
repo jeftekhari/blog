@@ -8,7 +8,7 @@ tags: [grc, security, compliance, automation, nist, devops]
 
 # I Built a Compliance Scanner Because I Didn't Know What Security Headers Were
 
-> I'm learning GRC from scratch. Instead of reading about it, I built a tool that scans my own site for compliance issues — and it immediately told me everything I was doing wrong.
+> I'm learning GRC from scratch. Instead of reading about it, I built a tool that scans my own site for compliance issues - and it immediately told me everything I was doing wrong.
 >
 > *This is part of an ongoing series where I work through governance, risk, and compliance fundamentals by automating them.
 
@@ -16,11 +16,11 @@ tags: [grc, security, compliance, automation, nist, devops]
 
 ## The starting point
 
-I've been wanting to get into GRC engineering for a while. Governance, Risk, and Compliance — the part of security that's less about hacking and more about proving you've got your house in order. Privacy policies, risk assessments, framework mappings, the stuff that makes auditors nod approvingly.
+I've been wanting to get into GRC engineering for a while. Governance, Risk, and Compliance - the part of security that's less about hacking and more about proving you've got your house in order. Privacy policies, risk assessments, framework mappings, the stuff that makes auditors nod approvingly.
 
 The problem is most GRC learning material is dry. Really dry. "Implement controls aligned with organizational risk appetite" dry. So I decided to learn by building.
 
-The idea: what if I could point a scanner at any GitHub repo and have it tell me everything that's wrong — missing policies, exposed secrets, vulnerable dependencies, misconfigured headers — and then *generate* the compliance documents from what it finds? 
+The idea: what if I could point a scanner at any GitHub repo and have it tell me everything that's wrong - missing policies, exposed secrets, vulnerable dependencies, misconfigured headers - and then *generate* the compliance documents from what it finds? 
 
 Not hand-written templates. Not copy-pasted boilerplate. Actual policies derived from actual code.
 
@@ -28,10 +28,10 @@ Oh and what if I gamify it so I can retain my interest?
 
 ## What the scanner does
 
-I built a [GRC Observability Dashboard](https://github.com/shipstuff/GRC-Observability-Dashboard](https://grc-dashboard.jdeftekhari.workers.dev) - a GitHub Action that scans repos and produces compliance reports. Point it at a repo, give it a live URL, and it runs 10 checks in parallel:
+I built a [GRC Observability Dashboard](https://grc-dashboard.jdeftekhari.workers.dev) - a GitHub Action that scans repos and produces compliance reports. Point it at a repo, give it a live URL, and it runs 10 checks in parallel:
 
 - Finds every form, POST endpoint, and cookie in the codebase
-- Identifies third-party services from your `package.json` (it knows about 20+ services — Resend, Stripe, Sentry, Auth0, etc.)
+- Identifies third-party services from your `package.json` (it knows about 20+ services - Resend, Stripe, Sentry, Auth0, etc.)
 - Checks for leaked secrets and API keys
 - Hits the live URL to check security headers and TLS
 - Evaluates GitHub branch protection settings
@@ -45,7 +45,7 @@ When I first ran it against [my personal site](https://joeeftekhari.com), the re
 
 That was my security headers score. Zero. Not a single one.
 
-I'd been building this site for months — Express backend, HTMX frontend, a game, a contact form, Google Analytics, Resend for emails — and I hadn't set a single security header. I didn't even know what most of them were.
+I'd been building this site for months - Express backend, HTMX frontend, a game, a contact form, Google Analytics, Resend for emails - and I hadn't set a single security header. I didn't even know what most of them were.
 
 The scanner also found:
 - 1 critical and 2 high dependency vulnerabilities
@@ -64,7 +64,7 @@ So I copied the middleware. Then I broke my site.
 
 The scanner generated a Content Security Policy based on Google Analytics being the only external resource it detected. But my site also loads HTMX from `unpkg.com`, particles.js from `cdn.jsdelivr.net`, AOS animations from `unpkg.com`, and Font Awesome from `cdnjs.cloudflare.com`. The CSP blocked all of them.
 
-Lesson learned: the scanner catches what it can, but CSP requires you to actually know what your site loads. I had to manually add those CDN domains to the policy. That's a gap I want to close — ideally the scanner would fetch the page, see what resources load, and build the CSP from that. It's on the roadmap.
+Lesson learned: the scanner catches what it can, but CSP requires you to actually know what your site loads. I had to manually add those CDN domains to the policy. That's a gap I want to close - ideally the scanner would fetch the page, see what resources load, and build the CSP from that. It's on the roadmap.
 
 Then I deployed the fix, and... the headers still weren't showing on the homepage. They worked on `/retro` and `/game` but not on `/`. Turns out `express.static` serves files directly and can bypass middleware. I had to use the `setHeaders` option on `express.static` to ensure headers get set on static file responses too.
 
@@ -93,7 +93,7 @@ This is the part I had to learn the hard way. Here's what I wish someone had exp
 Strict-Transport-Security: max-age=31536000; includeSubDomains
 ```
 
-You probably already redirect HTTP to HTTPS. HSTS goes a step further — it tells the browser "don't even *try* HTTP. Ever. For the next year."
+You probably already redirect HTTP to HTTPS. HSTS goes a step further - it tells the browser "don't even *try* HTTP. Ever. For the next year."
 
 Why does this matter if you already redirect? Because that first HTTP request, before the redirect, is unencrypted. If someone's on coffee shop WiFi, an attacker can intercept that first request and serve a fake version of your site. HSTS eliminates that window entirely.
 
@@ -109,9 +109,9 @@ This is the big one. CSP is a whitelist of exactly which domains your browser is
 
 Why it matters: if an attacker finds an XSS vulnerability in your site and injects a `<script src="https://evil.com/steal-cookies.js">`, CSP blocks it because `evil.com` isn't in your `script-src`. It's a safety net underneath your code.
 
-The catch is you have to know everything your site loads. My site pulls from five different CDNs — I had to add each one to the policy. Miss one and that library stops working. This is why a lot of developers skip CSP: it's the highest-effort header to get right.
+The catch is you have to know everything your site loads. My site pulls from five different CDNs - I had to add each one to the policy. Miss one and that library stops working. This is why a lot of developers skip CSP: it's the highest-effort header to get right.
 
-I'm using `unsafe-inline` which weakens the policy — ideally you'd use nonces or hashes for each inline script. But HTMX and many libraries rely on inline event handlers, making strict CSP impractical without significant refactoring. `unsafe-inline` with a domain whitelist is still miles better than no CSP.
+I'm using `unsafe-inline` which weakens the policy - ideally you'd use nonces or hashes for each inline script. But HTMX and many libraries rely on inline event handlers, making strict CSP impractical without significant refactoring. `unsafe-inline` with a domain whitelist is still miles better than no CSP.
 
 ### X-Frame-Options
 
@@ -119,7 +119,7 @@ I'm using `unsafe-inline` which weakens the policy — ideally you'd use nonces 
 X-Frame-Options: DENY
 ```
 
-Prevents any other site from embedding yours in an `<iframe>`. This stops clickjacking — where an attacker overlays an invisible iframe of your site on top of a fake button. The user thinks they're clicking "Claim your prize!" but they're actually clicking something on your site.
+Prevents any other site from embedding yours in an `<iframe>`. This stops clickjacking - where an attacker overlays an invisible iframe of your site on top of a fake button. The user thinks they're clicking "Claim your prize!" but they're actually clicking something on your site.
 
 `DENY` means nobody can iframe it, not even yourself. `SAMEORIGIN` allows self-iframing (useful for admin panels). A portfolio site has no reason to be iframed, so `DENY`.
 
@@ -139,7 +139,7 @@ This is a one-liner with zero tradeoffs. If you do nothing else, add this one.
 Referrer-Policy: strict-origin-when-cross-origin
 ```
 
-Controls how much URL information leaks to other sites when someone clicks a link on your page. Without this, clicking a link from `yoursite.com/admin/settings?token=abc123` sends the full URL to the destination in the `Referer` header — path, query params, everything.
+Controls how much URL information leaks to other sites when someone clicks a link on your page. Without this, clicking a link from `yoursite.com/admin/settings?token=abc123` sends the full URL to the destination in the `Referer` header - path, query params, everything.
 
 `strict-origin-when-cross-origin` sends the full URL for internal links (normal) but only the domain for external links (safe). HTTPS-to-HTTP downgrades send nothing.
 
