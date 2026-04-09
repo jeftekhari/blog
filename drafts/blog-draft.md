@@ -177,13 +177,13 @@ But underneath the aesthetic, it's showing real data: NIST CSF compliance per fu
 
 ## What I've learned so far
 
-<p align="center">
-  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGN4YTZid3V4emkzbmppY2J1YnM1N3cxZndhd2RodnF2YmNlOXN3ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GPQL5xsaunjmGcVqLn/giphy.gif"/>
-</p>
+<img align="right" width="300" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGN4YTZid3V4emkzbmppY2J1YnM1N3cxZndhd2RodnF2YmNlOXN3ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GPQL5xsaunjmGcVqLn/giphy.gif"/>
 
 I went into this knowing basically nothing about GRC. I'd heard of NIST CSF and SOC 2 but couldn't have told you what a "control" was or why anyone would need a "risk register."
 
 Building the scanner was a good start, but plenty of it was AI generated and I need to actually dig into each topic to make sure it's correct. You can't write a NIST CSF mapping without understanding what each subcategory actually requires. You can't generate a privacy policy without understanding GDPR's lawful basis for processing. You can't produce a risk assessment without understanding likelihood-impact matrices. Currently I understand very little, which is why I'm taking the first step and solidifying my knowledge about the security headers.
+
+<br clear="both"/>
 
 I still have a lot to learn. The scanner's CSP generation needs work. The AI layer is built but untested with a real API key. The dashboard needs auth, deployment automation, and better trend visualization. I haven't touched auditor evidence export yet.
 
