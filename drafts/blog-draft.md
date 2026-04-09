@@ -25,10 +25,14 @@ The idea: what if I could point a scanner at any GitHub repo and have it tell me
 Not hand-written templates. Not copy-pasted boilerplate. Actual policies derived from actual code.
 
 Oh and what if I gamify it so I can retain my interest?
+<p align="center">
+  <img width="819" height="358" alt="image" src="https://github.com/user-attachments/assets/db206bec-8d71-4b73-8d63-c45c73a4595a" />
+</p>
+
 
 ## What the scanner does
 
-I built a [GRC Observability Dashboard](https://grc-dashboard.jdeftekhari.workers.dev) - a GitHub Action that scans repos and produces compliance reports. Point it at a repo, give it a live URL, and it runs 10 checks in parallel:
+I built a [GRC Observability Dashboard](https://grc-dashboard.jdeftekhari.workers.dev) - a dashboard and GitHub Action that scans repos and produces compliance reports. Point it at a repo, give it a live URL, and it runs 10 checks in parallel:
 
 - Finds every form, POST endpoint, and cookie in the codebase
 - Identifies third-party services from your `package.json` (it knows about 20+ services - Resend, Stripe, Sentry, Auth0, etc.)
@@ -64,6 +68,10 @@ So I copied the middleware. Then I broke my site.
 
 The scanner generated a Content Security Policy based on Google Analytics being the only external resource it detected. But my site also loads HTMX from `unpkg.com`, particles.js from `cdn.jsdelivr.net`, AOS animations from `unpkg.com`, and Font Awesome from `cdnjs.cloudflare.com`. The CSP blocked all of them.
 
+You can literally see the compliance trend percentage staying the same and me banging my head against the wall trying to figure it out.
+<p align="center">
+  <img width="811" height="340" alt="image" src="https://github.com/user-attachments/assets/fef1e340-7582-487b-b0bf-52f472c2b0b6" />
+</p>
 Lesson learned: the scanner catches what it can, but CSP requires you to actually know what your site loads. I had to manually add those CDN domains to the policy. That's a gap I want to close - ideally the scanner would fetch the page, see what resources load, and build the CSP from that. It's on the roadmap.
 
 Then I deployed the fix, and... the headers still weren't showing on the homepage. They worked on `/retro` and `/game` but not on `/`. Turns out `express.static` serves files directly and can bypass middleware. I had to use the `setHeaders` option on `express.static` to ensure headers get set on static file responses too.
@@ -78,6 +86,10 @@ Referrer-Policy: strict-origin-when-cross-origin
 Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
 Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' ...
 ```
+
+<p align="center">
+  <img width="566" height="174" alt="image" src="https://github.com/user-attachments/assets/cc5ff356-9b39-4a42-bc61-57286f041197" />
+</p>
 
 **6 out of 6.** NIST CSF jumped from 67% to 75%. Overall compliance from 20% to 60%.
 
@@ -164,6 +176,10 @@ It's got a retro video game theme because why not. HP bars for compliance scores
 But underneath the aesthetic, it's showing real data: NIST CSF compliance per function (Identify, Protect, Detect, Respond, Recover), SOC 2 and ISO 27001 cross-references, branch comparisons, and historical trends.
 
 ## What I've learned so far
+
+<p align="center">
+  <img src="[https://media1.tenor.com/m/fsdb4oFRoIYAAAAd/verve-light-i-understand-nothing.gif](https://tenor.com/bEhd4.gif)"/>
+</p>
 
 I went into this knowing basically nothing about GRC. I'd heard of NIST CSF and SOC 2 but couldn't have told you what a "control" was or why anyone would need a "risk register."
 
