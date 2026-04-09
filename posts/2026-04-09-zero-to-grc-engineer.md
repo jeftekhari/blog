@@ -1,5 +1,5 @@
 ---
-title: "I Built a Compliance Scanner Because I Didn't Know What Security Headers Were"
+title: "Zero To Fully Compliant: Gamifiying Old Concepts Using AI Automation"
 date: 2026-04-09
 slug: grc-compliance-scanner-security-headers
 description: "How I automated GRC compliance for my personal site and learned what HSTS actually does along the way."
