@@ -165,13 +165,13 @@ But underneath the aesthetic, it's showing real data: NIST CSF compliance per fu
 
 I went into this knowing basically nothing about GRC. I'd heard of NIST CSF and SOC 2 but couldn't have told you what a "control" was or why anyone would need a "risk register."
 
-Building the scanner forced me to learn each concept well enough to codify it. You can't write a NIST CSF mapping without understanding what each subcategory actually requires. You can't generate a privacy policy without understanding GDPR's lawful basis for processing. You can't produce a risk assessment without understanding likelihood-impact matrices.
+Building the scanner was a good start, but plenty of it was AI generated and I need to actually dig into each topic to make sure it's correct. You can't write a NIST CSF mapping without understanding what each subcategory actually requires. You can't generate a privacy policy without understanding GDPR's lawful basis for processing. You can't produce a risk assessment without understanding likelihood-impact matrices. Currently I understand very little, which is why I'm taking the first step and solidifying my knowledge about the security headers.
 
 I still have a lot to learn. The scanner's CSP generation needs work. The AI layer is built but untested with a real API key. The dashboard needs auth, deployment automation, and better trend visualization. I haven't touched auditor evidence export yet.
 
 But the core loop works: scan, detect, generate, report. And my site went from 20% compliance to 60% by following the scanner's own recommendations.
 
-If you want to try it on your own repos, the setup is a [workflow file and a config file](https://github.com/shipstuff/GRC-Observability-Dashboard#quick-start). The scanner works on any Node/Python/Go repo.
+If you want to try it on your own repos, you will be able to shortly. There's some housekeeping I need to do before it'll work out of the box. The scanner should work on any Node/Python/Go repo.
 
 ---
 
