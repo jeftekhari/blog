@@ -10,7 +10,7 @@ tags: [grc, security, compliance, automation, nist, devops]
 
 > I'm learning GRC from scratch. Instead of reading about it, I built a tool that scans my own site for compliance issues — and it immediately told me everything I was doing wrong.
 >
-> *This is part of an ongoing series where I work through governance, risk, and compliance fundamentals by automating them. [GitHub repo](https://github.com/shipstuff/GRC-Observability-Dashboard).*
+> *This is part of an ongoing series where I work through governance, risk, and compliance fundamentals by automating them.
 
 ---
 
@@ -20,13 +20,15 @@ I've been wanting to get into GRC engineering for a while. Governance, Risk, and
 
 The problem is most GRC learning material is dry. Really dry. "Implement controls aligned with organizational risk appetite" dry. So I decided to learn by building.
 
-The idea: what if I could point a scanner at any GitHub repo and have it tell me everything that's wrong — missing policies, exposed secrets, vulnerable dependencies, misconfigured headers — and then *generate* the compliance documents from what it finds?
+The idea: what if I could point a scanner at any GitHub repo and have it tell me everything that's wrong — missing policies, exposed secrets, vulnerable dependencies, misconfigured headers — and then *generate* the compliance documents from what it finds? 
 
 Not hand-written templates. Not copy-pasted boilerplate. Actual policies derived from actual code.
 
+Oh and what if I gamify it so I can retain my interest?
+
 ## What the scanner does
 
-I built a [GRC Observability Dashboard](https://github.com/shipstuff/GRC-Observability-Dashboard) — a GitHub Action that scans repos and produces compliance reports. Point it at a repo, give it a live URL, and it runs 10 checks in parallel:
+I built a [GRC Observability Dashboard](https://github.com/shipstuff/GRC-Observability-Dashboard](https://grc-dashboard.jdeftekhari.workers.dev) - a GitHub Action that scans repos and produces compliance reports. Point it at a repo, give it a live URL, and it runs 10 checks in parallel:
 
 - Finds every form, POST endpoint, and cookie in the codebase
 - Identifies third-party services from your `package.json` (it knows about 20+ services — Resend, Stripe, Sentry, Auth0, etc.)
