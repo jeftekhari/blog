@@ -2,7 +2,7 @@
 title: "Zero To Fully Compliant: Gamifiying Old Concepts Using AI Automation"
 date: 2026-04-09
 slug: grc-compliance-scanner-security-headers
-description: "How I automated GRC compliance for my personal site and learned what HSTS actually does along the way."
+description: "How I automated a GRC dashboard for my personal site and learned what HSTS actually does along the way."
 tags: [grc, security, compliance, automation, nist, devops]
 ---
 
